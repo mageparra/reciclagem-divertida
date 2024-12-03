@@ -191,6 +191,8 @@
         </table>
 
         <h3 id="totalRecycled">Total Reciclado: 0 kg</h3>
+
+        <button id="clearData">Limpar Dados</button>
     </section>
 
     <footer>
@@ -202,6 +204,7 @@
             const form = document.getElementById("recyclingForm");
             const historyTable = document.getElementById("recyclingHistory").querySelector("tbody");
             const totalRecycledElement = document.getElementById("totalRecycled");
+            const clearDataButton = document.getElementById("clearData");
             let totalRecycled = 0;
 
             form.addEventListener("submit", (event) => {
@@ -226,6 +229,16 @@
                 totalRecycledElement.textContent = `Total Reciclado: ${totalRecycled.toFixed(2)} kg`;
 
                 form.reset();
+            });
+
+            clearDataButton.addEventListener("click", () => {
+                const confirmation = confirm("Deseja limpar todos os dados?");
+                if (confirmation) {
+                    // Limpar histórico
+                    historyTable.innerHTML = "";
+                    totalRecycled = 0;
+                    totalRecycledElement.textContent = `Total Reciclado: 0 kg`;
+                }
             });
         });
     </script>
